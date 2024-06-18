@@ -1,0 +1,13 @@
+.containerMain {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+}
+
+app-left-contact {
+  flex: 0 0 20%;
+}
+
+app-right-message {
+  flex: 1;
+}
