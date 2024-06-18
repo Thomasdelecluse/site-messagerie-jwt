@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ContactServiceService} from "../contact-service.service";
 
 @Component({
   selector: 'app-left-contact',
@@ -7,19 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LeftContactComponent implements OnInit {
 
-  constructor() { }
+  constructor(public contactService: ContactServiceService) { }
 
   ngOnInit(): void {
   }
-  contacts = [
-    { name: 'Lucas Mercier', telephone: '0667788595', isClicked: false },
-    { name: 'Thomas le roi', telephone: '0667788595', isClicked: false },
-  ];
 
   onContactClick(index: number) {
-    // Réinitialiser tous les contacts à non cliqués
-    this.contacts.forEach((contact, idx) => {
+    this.contactService.contacts.forEach((contact, idx) => {
       contact.isClicked = idx === index;
     });
+    this.contactService.setContactSelectedId(index);
   }
 }

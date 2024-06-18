@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ContactServiceService} from "../contact-service.service";
+import {Subscription} from "rxjs";
 
 @Component({
   selector: 'app-right-message',
@@ -6,10 +8,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./right-message.component.css']
 })
 export class RightMessageComponent implements OnInit {
-
-  constructor() { }
+  constructor(public contactService: ContactServiceService) { }
+  public contact: { name: string, telephone: string, isClicked: boolean } | null = null;
+  private contactSubscription: Subscription | null = null;
 
   ngOnInit(): void {
+    this.contactSubscription = this.contactService.getContactSelectedId().subscribe((value)=>{
+      this.contact = this.contactService.getContactByIndex(value)
+    });
   }
 
+  ngOnDestroy(): void {
+    this.contactSubscription?.unsubscribe();
+  }
 }

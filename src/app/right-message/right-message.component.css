@@ -1,0 +1,19 @@
+.head {
+  background-color: #a4d3ff;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  border-left: 1px solid #333;
+}
+.logo{
+  width: 50px;
+  height: 50px;
+  padding-right: 10px;
+}
+.headContent{
+  padding-left: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: row;
+}
