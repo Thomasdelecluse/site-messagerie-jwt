@@ -7,6 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { LeftContactComponent } from './left-contact/left-contact.component';
 import { RightMessageComponent } from './right-message/right-message.component';
 import { ContactComponent } from './contact/contact.component';
+import { MessageComponentComponent } from './message-component/message-component.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { ContactComponent } from './contact/contact.component';
     HomeComponent,
     LeftContactComponent,
     RightMessageComponent,
-    ContactComponent
+    ContactComponent,
+    MessageComponentComponent
   ],
   imports: [
     BrowserModule,

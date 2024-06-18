@@ -1,3 +1,9 @@
+.rightContainer{
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: white;
+}
 .head {
   background-color: #a4d3ff;
   height: 80px;
@@ -17,3 +23,12 @@
   align-items: center;
   flex-direction: row;
 }
+.messageContainer{
+  padding: 20px;
+}
+.writeMessage {
+  background-color: #c9c9c9;
+  height: 80px; /* Hauteur fixe de la div */
+  margin-top: auto;
+}
+
