@@ -3,13 +3,13 @@
   flex-direction: column;
   height: 100vh;
   background-color: white;
+  margin-left: 6px;
 }
 .head {
   background-color: #a4d3ff;
   height: 80px;
   display: flex;
   align-items: center;
-  border-left: 1px solid #333;
 }
 .logo{
   width: 50px;
@@ -28,7 +28,7 @@
 }
 .writeMessage {
   background-color: #c9c9c9;
-  height: 80px; /* Hauteur fixe de la div */
+  height: 80px;
   margin-top: auto;
 }
 

@@ -8,6 +8,8 @@ import { LeftContactComponent } from './left-contact/left-contact.component';
 import { RightMessageComponent } from './right-message/right-message.component';
 import { ContactComponent } from './contact/contact.component';
 import { MessageComponentComponent } from './message-component/message-component.component';
+import { MessageInputComponent } from './message-input/message-input.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import { MessageComponentComponent } from './message-component/message-component
     LeftContactComponent,
     RightMessageComponent,
     ContactComponent,
-    MessageComponentComponent
+    MessageComponentComponent,
+    MessageInputComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
