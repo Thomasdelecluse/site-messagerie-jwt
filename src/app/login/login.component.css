@@ -34,8 +34,8 @@ a {
 
 button {
   border-radius: 20px;
-  border: 1px solid #FF4B2B;
-  background-color: #FF4B2B;
+  border: 1px solid #a4d3ff;
+  background-color: #a4d3ff;
   color: #FFFFFF;
   font-size: 12px;
   font-weight: bold;
@@ -153,11 +153,15 @@ input {
 .container.right-panel-active .overlay-container{
   transform: translateX(-100%);
 }
-
+.logo{
+  width: 100px;
+  height: 90px;
+  margin-bottom: 20px;
+}
 .overlay {
-  background: #FF416C;
-  background: -webkit-linear-gradient(to right, #FF4B2B, #FF416C);
-  background: linear-gradient(to right, #FF4B2B, #FF416C);
+  background: #a4d3ff;
+  background: -webkit-linear-gradient(to right, #a4d3ff, #1f91ff);
+  background: linear-gradient(to right, #a4d3ff, #1f91ff);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;

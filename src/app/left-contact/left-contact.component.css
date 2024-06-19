@@ -1,7 +1,7 @@
 .leftContainer {
   height: 100vh;
   background-color: white;
-  box-shadow: 6px 0 7px -4px rgba(0, 0, 0, 0.7);
+  box-shadow: 6px 0 7px -4px rgb(181 181 181 / 70%);
 }
 
 .head {
@@ -12,8 +12,8 @@
 }
 
 .logo {
-  margin-left: 10px;
-  height: 80px;
+  margin-left: 20px;
+  height: 40px;
 }
 .contactContainer{
   padding: 10px;

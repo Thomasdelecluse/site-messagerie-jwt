@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ContactServiceService} from "../contact-service.service";
+import {ContactServiceService} from "../service/contact-service.service";
 
 @Component({
   selector: 'app-left-contact',

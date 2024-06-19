@@ -10,9 +10,9 @@ import { ContactComponent } from './contact/contact.component';
 import { MessageInputComponent } from './message-input/message-input.component';
 import {FormsModule} from "@angular/forms";
 import {MessageReceiveComponent} from "./message-receive-component/message-receive.component";
-import { MessageSendComponent } from './message-send/message-send.component';
+import { MessageSentComponent } from './message-send/message-sent.component';
 import { LoginComponent } from './login/login.component';
-
+import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,13 +22,14 @@ import { LoginComponent } from './login/login.component';
     ContactComponent,
     MessageReceiveComponent,
     MessageInputComponent,
-    MessageSendComponent,
+    MessageSentComponent,
     LoginComponent
   ],
     imports: [
         BrowserModule,
         AppRoutingModule,
-        FormsModule
+        FormsModule,
+        HttpClientModule
     ],
   providers: [],
   bootstrap: [AppComponent]

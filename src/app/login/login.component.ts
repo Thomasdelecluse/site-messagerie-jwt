@@ -1,4 +1,6 @@
 import {Component, OnInit, Renderer2} from '@angular/core';
+import {ApiAuthRequest} from "../dao/api-request-auth";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -6,11 +8,12 @@ import {Component, OnInit, Renderer2} from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  public email: string| null = null;
+  public password: string | null = null;
+  constructor(private renderer: Renderer2,private apiAuthRequest: ApiAuthRequest, private router: Router) {}
 
-  constructor(private renderer: Renderer2) {}
 
   ngOnInit(): void {
-    // Initial setup if needed
   }
 
   switchToSignUp(): void {
@@ -27,4 +30,21 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  login(): void {
+    const email = (<HTMLInputElement>document.getElementById('email')).value;
+    const password = (<HTMLInputElement>document.getElementById('password')).value;
+
+    const data = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.apiAuthRequest.postLogin(data).subscribe(response => {
+      sessionStorage.setItem('token', response.token);
+      console.log(response.token)
+      this.router.navigate(['/home']);
+    }, error => {
+      console.error('Login failed:', error);
+    });
+  }
 }

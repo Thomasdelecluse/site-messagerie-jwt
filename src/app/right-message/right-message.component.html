@@ -2,15 +2,12 @@
   <div class="head">
     <div class="headContent">
       <img src="./assets/img/user.png" alt="Logo" class="logo">
-      <h2>{{contact?.name}}</h2>
+      <h2>{{contactConversation?.name}}</h2>
     </div>
   </div>
   <div class="messageContainer">
-    <app-message-component class="message" message="Salut tu va bien ?"></app-message-component>
-    <app-message-component class="message" message="Je voulais savoir pourquoi mon pc marche plus"></app-message-component>
-    <app-message-component class="message" message="??"></app-message-component>
-    <app-message-send class="message-send" message="j'ai mis de l'ice tea dessu désolé"></app-message-send>
-    <app-message-component class="message" message="D'accord pas de soucis ;)"></app-message-component>
+    <app-message-receive *ngFor="let message of messagesReceive" class="message" [message]="message.message"></app-message-receive>
+    <app-message-sent *ngFor="let message of messagesSent" class="message-send" [message]="message.message"></app-message-sent>
   </div>
   <div class="writeMessage">
       <app-message-input></app-message-input>

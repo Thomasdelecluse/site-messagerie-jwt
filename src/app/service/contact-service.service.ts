@@ -8,9 +8,13 @@ export class ContactServiceService {
 
   private _contactSelectedIdSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
+  constructor() {
+
+  }
   contacts = [
-    { name: 'Lucas Mercier', telephone: '0667788595', isClicked: false },
-    { name: 'Thomas le roi', telephone: '0667788595', isClicked: false },
+    { name: 'marina', telephone: '0667788595', isClicked: false },
+    { name: 'lucas@pro.com', telephone: '0667788595', isClicked: false },
+    { name: 'hugo', telephone: '0667788595', isClicked: false },
   ];
 
   setContactSelectedId(value: number) {
