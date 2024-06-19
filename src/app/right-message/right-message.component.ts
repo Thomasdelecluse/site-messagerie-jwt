@@ -16,6 +16,9 @@ export class RightMessageComponent implements OnInit {
     this.contactSubscription = this.contactService.getContactSelectedId().subscribe((value)=>{
       this.contact = this.contactService.getContactByIndex(value)
     });
+    if (this.contact != null){
+      //requete pour aller chercher
+    }
   }
 
   ngOnDestroy(): void {

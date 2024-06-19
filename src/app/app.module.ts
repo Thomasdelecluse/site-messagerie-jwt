@@ -7,9 +7,11 @@ import { HomeComponent } from './home/home.component';
 import { LeftContactComponent } from './left-contact/left-contact.component';
 import { RightMessageComponent } from './right-message/right-message.component';
 import { ContactComponent } from './contact/contact.component';
-import { MessageComponentComponent } from './message-component/message-component.component';
 import { MessageInputComponent } from './message-input/message-input.component';
 import {FormsModule} from "@angular/forms";
+import {MessageReceiveComponent} from "./message-receive-component/message-receive.component";
+import { MessageSendComponent } from './message-send/message-send.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -18,8 +20,10 @@ import {FormsModule} from "@angular/forms";
     LeftContactComponent,
     RightMessageComponent,
     ContactComponent,
-    MessageComponentComponent,
-    MessageInputComponent
+    MessageReceiveComponent,
+    MessageInputComponent,
+    MessageSendComponent,
+    LoginComponent
   ],
     imports: [
         BrowserModule,

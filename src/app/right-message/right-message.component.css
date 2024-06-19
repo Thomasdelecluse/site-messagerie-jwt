@@ -25,10 +25,33 @@
 }
 .messageContainer{
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  width: auto;
 }
+
 .writeMessage {
   background-color: #c9c9c9;
   height: 80px;
   margin-top: auto;
 }
-
+.message-send {
+  display: inline-block;
+  max-width: 500px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #ececec;
+  align-self: flex-end;
+  text-align: right;
+}
+.message{
+  display: inline-block;
+  max-width: 500px;
+  padding: 8px 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  background-color: #a4d3ff;
+  align-self: flex-start;
+  text-align: left;
+}
