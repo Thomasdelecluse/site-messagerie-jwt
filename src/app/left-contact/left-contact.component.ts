@@ -11,11 +11,11 @@ export class LeftContactComponent implements OnInit {
   constructor(public contactService: ContactServiceService) { }
 
   ngOnInit(): void {
-    this.contactService().getContactRequest();
+    this.contactService.getContactOfUserConnected();
   }
 
   onContactClick(index: number) {
-    this.contactService.contacts.forEach((contact, idx) => {
+    this.contactService.ContactWithIsClicked.forEach((contact, idx) => {
       contact.isClicked = idx === index;
     });
     this.contactService.setContactSelectedId(index);

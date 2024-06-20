@@ -2,19 +2,15 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiContactRequest } from '../dao/api-request-contact';
 
-interface ApiContacts {
-  contacts: ApiContact[];
+interface Contact {
+  contactEmail:string,
+  telephone:string
 }
-
-interface ApiContact {
-  contactEmail: string;
-  telephone: string;
+interface ContactWithIsClicked {
+  contactEmail:string,
+  telephone:string
+  isClicked:boolean
 }
-
-export interface Contact extends ApiContact {
-  isClicked: boolean;
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -23,6 +19,7 @@ export class ContactServiceService {
   private _contactSelectedIdSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
   contacts: Contact[] = [];
+  ContactWithIsClicked: ContactWithIsClicked[] =[];
 
   constructor(private apiContactRequest: ApiContactRequest) {
   }
@@ -30,22 +27,13 @@ export class ContactServiceService {
   ngOnInit(): void {
   }
 
-  public getContactRequest(){
-    this.apiContactRequest.getAllContactsOfUserConnected().subscribe({
-      next: (response) => {
-        if (response && response.contacts) {
-          this.contacts = response.contacts.map(apiContact => ({
-            ...apiContact,
-            isClicked: false
-          }));
-          console.log(this.contacts)
-        } else {
-          console.error('Response or contacts array is undefined');
-        }
+  getContactOfUserConnected(){
+    this.apiContactRequest.getAllContactsOfUserConnected().subscribe(
+      (contacts: Contact[]) => {
+        this.ContactWithIsClicked = contacts.map(contact => ({ ...contact, isClicked: true }));
       },
-      error: (error) => {
-        console.error('Failed to receive contacts:', error);
-      }
+      error => {
+      console.error('Login failed:', error);
     });
   }
 
@@ -57,7 +45,7 @@ export class ContactServiceService {
     return this._contactSelectedIdSubject.asObservable();
   }
 
-  getContactByIndex(index: number): Contact {
-    return this.contacts[index];
+  getContactByIndex(index: number): ContactWithIsClicked {
+    return this.ContactWithIsClicked[index];
   }
 }
