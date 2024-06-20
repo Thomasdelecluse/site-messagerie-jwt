@@ -9,6 +9,7 @@ interface Message {
   id:number,
   author:string,
   destination:string,
+  date:string,
   message:string
 }
 @Injectable({
@@ -23,7 +24,6 @@ export class ApiMessageRequest {
   getAllMessageByConversation(contactEmail: string): Observable<Messages> {
     const url = `${this.apiUrl}/conversation?email=${encodeURIComponent(contactEmail)}`;
     const token = sessionStorage.getItem('token');
-    console.log(token)
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     if (token) {
       headers = headers.set('Authorization', `Bearer ${token}`);

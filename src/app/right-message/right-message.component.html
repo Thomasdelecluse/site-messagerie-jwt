@@ -6,10 +6,12 @@
     </div>
   </div>
   <div class="messageContainer">
-    <app-message-receive *ngFor="let message of messagesReceive" class="message" [message]="message.message"></app-message-receive>
-    <app-message-sent *ngFor="let message of messagesSent" class="message-send" [message]="message.message"></app-message-sent>
+    <ng-container *ngFor="let message of messages">
+      <app-message-receive *ngIf="message.type === 'received'" class="message" [message]="message.message"></app-message-receive>
+      <app-message-sent *ngIf="message.type === 'sent'" class="message-send" [message]="message.message"></app-message-sent>
+    </ng-container>
   </div>
   <div class="writeMessage">
-      <app-message-input></app-message-input>
+    <app-message-input></app-message-input>
   </div>
 </div>
