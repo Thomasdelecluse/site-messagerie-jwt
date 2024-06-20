@@ -3,7 +3,7 @@
     <img src="./assets/img/logo.png" alt="Logo" class="logo">
   </div>
   <div class="contactContainer">
-    <app-contact *ngFor="let contact of contactService.ContactWithIsClicked; let i = index"
+    <app-contact *ngFor="let contact of contactService.ContactList; let i = index"
                  [name]="contact.contactEmail"
                  [telephone]="contact.telephone"
                  [isClicked]="contact.isClicked"

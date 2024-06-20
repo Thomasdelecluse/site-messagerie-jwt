@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ContactServiceService } from '../service/contact-service.service'; // Importer Contact depuis le service
+import { ContactService } from '../service/contact.service'; // Importer Contact depuis le service
 
 @Component({
   selector: 'app-left-contact',
@@ -8,14 +8,18 @@ import { ContactServiceService } from '../service/contact-service.service'; // I
 })
 export class LeftContactComponent implements OnInit {
 
-  constructor(public contactService: ContactServiceService) { }
+  constructor(public contactService: ContactService) { }
 
   ngOnInit(): void {
     this.contactService.getContactOfUserConnected();
+    //TO DO
+    setTimeout(() => {
+      this.contactService.setContactSelectedId(0);
+    }, 100);
   }
 
   onContactClick(index: number) {
-    this.contactService.ContactWithIsClicked.forEach((contact, idx) => {
+    this.contactService.ContactList.forEach((contact, idx) => {
       contact.isClicked = idx === index;
     });
     this.contactService.setContactSelectedId(index);

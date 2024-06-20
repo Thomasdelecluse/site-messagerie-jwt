@@ -6,7 +6,7 @@ interface Contact {
   contactEmail:string,
   telephone:string
 }
-interface ContactWithIsClicked {
+interface ContactList {
   contactEmail:string,
   telephone:string
   isClicked:boolean
@@ -14,12 +14,11 @@ interface ContactWithIsClicked {
 @Injectable({
   providedIn: 'root'
 })
-export class ContactServiceService {
+export class ContactService {
 
   private _contactSelectedIdSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
-  contacts: Contact[] = [];
-  ContactWithIsClicked: ContactWithIsClicked[] =[];
+  ContactList: ContactList[] =[];
 
   constructor(private apiContactRequest: ApiContactRequest) {
   }
@@ -30,7 +29,7 @@ export class ContactServiceService {
   getContactOfUserConnected(){
     this.apiContactRequest.getAllContactsOfUserConnected().subscribe(
       (contacts: Contact[]) => {
-        this.ContactWithIsClicked = contacts.map(contact => ({ ...contact, isClicked: true }));
+        this.ContactList = contacts.map(contact => ({ ...contact, isClicked: false }));
       },
       error => {
       console.error('Login failed:', error);
@@ -44,8 +43,10 @@ export class ContactServiceService {
   getContactSelectedId(): Observable<number> {
     return this._contactSelectedIdSubject.asObservable();
   }
-
-  getContactByIndex(index: number): ContactWithIsClicked {
-    return this.ContactWithIsClicked[index];
+  getContactSelected():ContactList{
+    return this.ContactList[this._contactSelectedIdSubject.value];
+  }
+  getContactByIndex(index: number): ContactList {
+    return this.ContactList[index];
   }
 }

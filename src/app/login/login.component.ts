@@ -10,6 +10,7 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   public email: string| null = null;
   public password: string | null = null;
+  public loginError: boolean = false;
   constructor(private renderer: Renderer2,private apiAuthRequest: ApiAuthRequest, private router: Router) {}
 
 
@@ -40,11 +41,15 @@ export class LoginComponent implements OnInit {
     };
 
     this.apiAuthRequest.postLogin(data).subscribe(response => {
-      sessionStorage.setItem('token', response.token);
-      console.log(response.token)
-      this.router.navigate(['/home']);
+      if (response == null) {
+        this.loginError = true;
+      } else {
+        sessionStorage.setItem('token', response.token);
+        this.router.navigate(['/home']);
+      }
     }, error => {
       console.error('Login failed:', error);
+      this.loginError = true;
     });
   }
 }

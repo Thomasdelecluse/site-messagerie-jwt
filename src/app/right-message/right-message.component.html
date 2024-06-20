@@ -1,8 +1,10 @@
 <div class="rightContainer">
   <div class="head">
     <div class="headContent">
-      <img src="./assets/img/user.png" alt="Logo" class="logo">
-      <h2>{{contactConversation?.contactEmail}}</h2>
+      <ng-container *ngIf="contactConversation?.contactEmail">
+        <img src="./assets/img/user.png" alt="Logo" class="logo">
+        <h2>{{contactConversation?.contactEmail}}</h2>
+      </ng-container>
     </div>
   </div>
   <div class="messageContainer">

@@ -1,8 +1,8 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ContactServiceService } from "../service/contact-service.service";
+import { ContactService } from "../service/contact.service";
 import { Subscription } from "rxjs";
 import { ApiMessageRequest } from "../dao/api-request-message";
-
+import {MessageUpdateService} from "../service/message-update.service";
 interface Message {
   id: number,
   author: string,
@@ -11,7 +11,6 @@ interface Message {
   message: string,
   type: 'received' | 'sent'
 }
-
 @Component({
   selector: 'app-right-message',
   templateUrl: './right-message.component.html',
@@ -21,22 +20,23 @@ export class RightMessageComponent implements OnInit, OnDestroy {
   public contactConversation: { contactEmail: string, telephone: string, isClicked: boolean } | null = null;
   public messages: Message[] = [];
   private contactSubscription: Subscription | null = null;
+  private messageUpdateSubscription: Subscription | null = null;
 
-  constructor(public contactService: ContactServiceService, private apiMessageRequest: ApiMessageRequest) { }
+  constructor(
+    public contactService: ContactService,
+    private apiMessageRequest: ApiMessageRequest,
+    private messageUpdateService: MessageUpdateService
+  ) { }
 
   ngOnInit(): void {
-    this.contactSubscription = this.contactService.getContactSelectedId().subscribe((value) => {
+      this.contactSubscription = this.contactService.getContactSelectedId().subscribe((value) => {
       this.messages = [];
       this.contactConversation = this.contactService.getContactByIndex(value);
       if (this.contactConversation != null) {
-        this.apiMessageRequest.getAllMessageByConversation(this.contactConversation.contactEmail).subscribe(response => {
-          this.messages = response.messages.map(message => ({
-            ...message,
-            type: message.author === this.contactConversation!.contactEmail ? 'received' : 'sent'
-          }));
-          this.messages.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-        }, error => {
-          console.error('Login failed:', error);
+        this.loadMessages();
+
+        this.messageUpdateSubscription = this.messageUpdateService.messageUpdated.subscribe(() => {
+          this.loadMessages();
         });
       }
     });
@@ -44,5 +44,18 @@ export class RightMessageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.contactSubscription?.unsubscribe();
+    this.messageUpdateSubscription?.unsubscribe();
+  }
+
+  private loadMessages(): void {
+    this.apiMessageRequest.getAllMessageByConversation(this.contactConversation!.contactEmail).subscribe(response => {
+      this.messages = response.messages.map(message => ({
+        ...message,
+        type: message.author === this.contactConversation!.contactEmail ? 'received' : 'sent'
+      }));
+      this.messages.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
+    }, error => {
+      console.error('Load Message fail:', error);
+    });
   }
 }
