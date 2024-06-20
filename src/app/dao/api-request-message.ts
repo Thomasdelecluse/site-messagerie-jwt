@@ -22,7 +22,7 @@ export class ApiMessageRequest {
 
 
   getAllMessageByConversation(contactEmail: string): Observable<Messages> {
-    const url = `${this.apiUrl}/conversation?email=${encodeURIComponent(contactEmail)}`;
+    const url = `${this.apiUrl}?email=${encodeURIComponent(contactEmail)}`;
     const token = sessionStorage.getItem('token');
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     if (token) {

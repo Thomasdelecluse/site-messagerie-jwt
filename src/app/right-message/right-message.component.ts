@@ -18,7 +18,7 @@ interface Message {
   styleUrls: ['./right-message.component.css']
 })
 export class RightMessageComponent implements OnInit, OnDestroy {
-  public contactConversation: { name: string, telephone: string, isClicked: boolean } | null = null;
+  public contactConversation: { contactEmail: string, telephone: string, isClicked: boolean } | null = null;
   public messages: Message[] = [];
   private contactSubscription: Subscription | null = null;
 
@@ -26,12 +26,13 @@ export class RightMessageComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.contactSubscription = this.contactService.getContactSelectedId().subscribe((value) => {
+      this.messages = [];
       this.contactConversation = this.contactService.getContactByIndex(value);
       if (this.contactConversation != null) {
-        this.apiMessageRequest.getAllMessageByConversation(this.contactConversation.name).subscribe(response => {
+        this.apiMessageRequest.getAllMessageByConversation(this.contactConversation.contactEmail).subscribe(response => {
           this.messages = response.messages.map(message => ({
             ...message,
-            type: message.author === this.contactConversation!.name ? 'received' : 'sent'
+            type: message.author === this.contactConversation!.contactEmail ? 'received' : 'sent'
           }));
           this.messages.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
         }, error => {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ContactServiceService} from "../service/contact-service.service";
+import { ContactServiceService } from '../service/contact-service.service'; // Importer Contact depuis le service
 
 @Component({
   selector: 'app-left-contact',
@@ -11,6 +11,7 @@ export class LeftContactComponent implements OnInit {
   constructor(public contactService: ContactServiceService) { }
 
   ngOnInit(): void {
+    this.contactService().getContactRequest();
   }
 
   onContactClick(index: number) {

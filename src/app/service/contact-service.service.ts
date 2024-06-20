@@ -1,5 +1,19 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable} from "rxjs";
+import { BehaviorSubject, Observable } from 'rxjs';
+import { ApiContactRequest } from '../dao/api-request-contact';
+
+interface ApiContacts {
+  contacts: ApiContact[];
+}
+
+interface ApiContact {
+  contactEmail: string;
+  telephone: string;
+}
+
+export interface Contact extends ApiContact {
+  isClicked: boolean;
+}
 
 @Injectable({
   providedIn: 'root'
@@ -8,14 +22,32 @@ export class ContactServiceService {
 
   private _contactSelectedIdSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
-  constructor() {
+  contacts: Contact[] = [];
 
+  constructor(private apiContactRequest: ApiContactRequest) {
   }
-  contacts = [
-    { name: 'marina', telephone: '0667788595', isClicked: false },
-    { name: 'lucas@pro.com', telephone: '0667788595', isClicked: false },
-    { name: 'hugo', telephone: '0667788595', isClicked: false },
-  ];
+
+  ngOnInit(): void {
+  }
+
+  public getContactRequest(){
+    this.apiContactRequest.getAllContactsOfUserConnected().subscribe({
+      next: (response) => {
+        if (response && response.contacts) {
+          this.contacts = response.contacts.map(apiContact => ({
+            ...apiContact,
+            isClicked: false
+          }));
+          console.log(this.contacts)
+        } else {
+          console.error('Response or contacts array is undefined');
+        }
+      },
+      error: (error) => {
+        console.error('Failed to receive contacts:', error);
+      }
+    });
+  }
 
   setContactSelectedId(value: number) {
     this._contactSelectedIdSubject.next(value);
@@ -25,7 +57,7 @@ export class ContactServiceService {
     return this._contactSelectedIdSubject.asObservable();
   }
 
-  getContactByIndex(number:number){
-    return this.contacts[number]
+  getContactByIndex(index: number): Contact {
+    return this.contacts[index];
   }
 }
