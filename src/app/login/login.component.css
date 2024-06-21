@@ -32,8 +32,8 @@ a {
 
 button {
   border-radius: 20px;
-  border: 1px solid #a4d3ff;
-  background-color: #a4d3ff;
+  border: 1px solid #83dfff;
+  background-color: #83dfff;
   color: #FFFFFF;
   font-size: 12px;
   font-weight: bold;
@@ -68,7 +68,7 @@ form {
 }
 
 input {
-  background-color: #eee;
+  border-radius:10px;
   border: none;
   padding: 12px 15px;
   margin: 8px 0;
@@ -158,8 +158,7 @@ input {
 }
 .overlay {
   background: #a4d3ff;
-  background: -webkit-linear-gradient(to right, #a4d3ff, #1f91ff);
-  background: linear-gradient(to right, #a4d3ff, #1f91ff);
+  background: linear-gradient(90deg, rgba(131,241,255,1) 0%, rgba(0,198,255,1) 70%, rgba(49,195,255,1) 100%);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: 0 0;
@@ -210,6 +209,7 @@ input {
 .error-message{
   color: red;
   font-weight: bold;
+  font-size: small;
 }
 
 
