@@ -1,11 +1,14 @@
 <div class="containerMain">
   <div class="container" id="container">
     <div class="form-container sign-up-container">
-      <form action="#">
+      <form (ngSubmit)="register()" #loginForm="ngForm">
         <img src="./assets/img/logo.png" class="logo">
         <h1>Crée sont compte :</h1>
-        <input type="email" placeholder="Email" />
-        <input type="password" placeholder="Password" />
+        <input type="email" id="emailRegister" name="emailRegister" placeholder="Email" [(ngModel)]="emailRegister" required/>
+        <input type="password" id="passwordRegister" name="passwordRegister" placeholder="Password" [(ngModel)]="passwordRegister" required/>
+        <div *ngIf="loginError" class="error-message">
+          Une erreur s'est produite lors de la connexion.
+        </div>
         <button>S'inscrire</button>
       </form>
     </div>

@@ -10,6 +10,8 @@ import {Router} from "@angular/router";
 export class LoginComponent implements OnInit {
   public email: string| null = null;
   public password: string | null = null;
+  public emailRegister: string |  null = null;
+  public passwordRegister: string |  null = null;
   public loginError: boolean = false;
   constructor(private renderer: Renderer2,private apiAuthRequest: ApiAuthRequest, private router: Router) {}
 
@@ -31,10 +33,44 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  register(): void {
+    const email = (<HTMLInputElement>document.getElementById('emailRegister')).value;
+    const password = (<HTMLInputElement>document.getElementById('passwordRegister')).value;
+    const invalidCharacters = ['"', "'"];
+    const containsInvalidCharacters = invalidCharacters.some(char => email.includes(char) || password.includes(char));
+
+    if (containsInvalidCharacters) {
+      this.loginError = true;
+      return
+    }
+    const data = {
+      email: this.email,
+      password: this.password
+    };
+    console.log(data)
+    this.apiAuthRequest.register(data).subscribe(response => {
+      if (response == null) {
+        this.loginError = true;
+      } else {
+        sessionStorage.setItem('token', response.token);
+        this.router.navigate(['/home']);
+      }
+    }, error => {
+      console.error('Login failed:', error);
+      this.loginError = true;
+    });
+  }
+
   login(): void {
     const email = (<HTMLInputElement>document.getElementById('email')).value;
     const password = (<HTMLInputElement>document.getElementById('password')).value;
+    const invalidCharacters = ['"', "'"];
+    const containsInvalidCharacters = invalidCharacters.some(char => email.includes(char) || password.includes(char));
 
+    if (containsInvalidCharacters) {
+      this.loginError = true;
+      return
+    }
     const data = {
       email: this.email,
       password: this.password
