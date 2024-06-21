@@ -4,7 +4,7 @@
   </div>
   <div class="contactContainer">
     <app-contact *ngFor="let contact of contactService.ContactList; let i = index"
-                 [name]="contact.contactEmail"
+                 [name]="contact.contactName"
                  [telephone]="contact.telephone"
                  [isClicked]="contact.isClicked"
                  (click)="onContactClick(i)">

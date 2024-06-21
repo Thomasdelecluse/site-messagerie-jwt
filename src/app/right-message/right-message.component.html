@@ -1,15 +1,15 @@
 <div class="rightContainer">
   <div class="head">
     <div class="headContent">
-      <ng-container *ngIf="contactConversation?.contactEmail">
+      <ng-container *ngIf="contactConversation?.contactName">
         <img src="./assets/img/user.png" alt="Logo" class="logo">
-        <h2>{{contactConversation?.contactEmail}}</h2>
+        <h2>{{contactConversation?.contactName}}</h2>
       </ng-container>
     </div>
   </div>
   <div class="messageContainer">
     <ng-container *ngFor="let message of messages">
-      <app-message-receive *ngIf="message.type === 'received'" class="message" [message]="message.message"></app-message-receive>
+      <app-message-receive *ngIf="message.type === 'received'" class="message-receive" [message]="message.message"></app-message-receive>
       <app-message-sent *ngIf="message.type === 'sent'" class="message-send" [message]="message.message"></app-message-sent>
     </ng-container>
   </div>

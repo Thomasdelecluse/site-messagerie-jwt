@@ -4,11 +4,13 @@ import { ApiContactRequest } from '../dao/api-request-contact';
 
 interface Contact {
   contactEmail:string,
-  telephone:string
+  telephone:string,
+  contactName:string
 }
 interface ContactList {
   contactEmail:string,
-  telephone:string
+  telephone:string,
+  contactName:string,
   isClicked:boolean
 }
 @Injectable({

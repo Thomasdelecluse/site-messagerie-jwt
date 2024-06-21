@@ -17,7 +17,7 @@ interface Message {
   styleUrls: ['./right-message.component.css']
 })
 export class RightMessageComponent implements OnInit, OnDestroy {
-  public contactConversation: { contactEmail: string, telephone: string, isClicked: boolean } | null = null;
+  public contactConversation: { contactEmail: string, telephone: string,contactName: string, isClicked: boolean } | null = null;
   public messages: Message[] = [];
   private contactSubscription: Subscription | null = null;
   private messageUpdateSubscription: Subscription | null = null;

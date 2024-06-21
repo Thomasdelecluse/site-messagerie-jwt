@@ -3,7 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
 interface ContactResponse {
   contactEmail:string,
-  telephone:string
+  telephone:string,
+  contactName:string
 }
 
 @Injectable({
