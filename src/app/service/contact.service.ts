@@ -3,15 +3,17 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { ApiContactRequest } from '../dao/api-request-contact';
 
 interface Contact {
-  contactEmail:string,
-  telephone:string,
-  contactName:string
-}
-interface ContactList {
+  id:number,
   contactEmail:string,
   telephone:string,
   contactName:string,
-  isClicked:boolean
+}
+interface ContactList {
+  id:number,
+  contactEmail:string,
+  telephone:string,
+  contactName:string,
+  isClicked:boolean,
 }
 @Injectable({
   providedIn: 'root'
@@ -28,27 +30,29 @@ export class ContactService {
   ngOnInit(): void {
   }
 
-  getContactOfUserConnected(){
+  getAllContactOfUserConnected(){
     this.apiContactRequest.getAllContactsOfUserConnected().subscribe(
       (contacts: Contact[]) => {
         this.ContactList = contacts.map(contact => ({ ...contact, isClicked: false }));
+
+        if (this.ContactList.length > 0) {
+          this.ContactList[0].isClicked = true;
+        }
       },
       error => {
       console.error('Login failed:', error);
     });
   }
 
+
   setContactSelectedId(value: number) {
     this._contactSelectedIdSubject.next(value);
   }
-
   getContactSelectedId(): Observable<number> {
     return this._contactSelectedIdSubject.asObservable();
   }
+
   getContactSelected():ContactList{
     return this.ContactList[this._contactSelectedIdSubject.value];
-  }
-  getContactByIndex(index: number): ContactList {
-    return this.ContactList[index];
   }
 }

@@ -1,42 +1,41 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ContactService } from "../service/contact.service";
-import { Subscription } from "rxjs";
-import { ApiMessageRequest } from "../dao/api-request-message";
-import {MessageUpdateService} from "../service/message-update.service";
-interface Message {
-  id: number,
-  author: string,
-  destination: string,
-  date: string,
-  message: string,
-  type: 'received' | 'sent'
-}
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ContactService} from "../service/contact.service";
+import {Subscription} from "rxjs";
+import {WebsocketService} from "../service/websocket.service";
+import MessageWithType from "../dto/component/message-with-type";
+import {MessageService} from "../service/message.service";
+
+
 @Component({
   selector: 'app-right-message',
   templateUrl: './right-message.component.html',
   styleUrls: ['./right-message.component.css']
 })
 export class RightMessageComponent implements OnInit, OnDestroy {
-  public contactConversation: { contactEmail: string, telephone: string,contactName: string, isClicked: boolean } | null = null;
-  public messages: Message[] = [];
   private contactSubscription: Subscription | null = null;
-  private messageUpdateSubscription: Subscription | null = null;
-
+  private messageWebSocketSubscription: Subscription | null = null;
+  public messages: MessageWithType[] = [];
+  public contactConversation: { id: number,contactEmail: string, telephone: string, contactName: string, isClicked: boolean } | null = null;
   constructor(
     public contactService: ContactService,
-    private apiMessageRequest: ApiMessageRequest,
-    private messageUpdateService: MessageUpdateService
-  ) { }
+    public websocketService: WebsocketService,
+    public messageService: MessageService,
+  ) {
+  }
 
   ngOnInit(): void {
-      this.contactSubscription = this.contactService.getContactSelectedId().subscribe((value) => {
-      this.messages = [];
-      this.contactConversation = this.contactService.getContactByIndex(value);
+    this.contactSubscription = this.contactService.getContactSelectedId().subscribe( () => {
+      this.contactConversation = this.contactService.getContactSelected();
       if (this.contactConversation != null) {
-        this.loadMessages();
-
-        this.messageUpdateSubscription = this.messageUpdateService.messageUpdated.subscribe(() => {
-          this.loadMessages();
+        this.messageService.messages.subscribe((messages: MessageWithType[]) => {
+          this.messages = messages;
+        });
+        this.messageService.loadMessages(this.contactConversation!.contactEmail);
+        this.messageWebSocketSubscription = this.websocketService.messageSubject.subscribe((message) => {
+          console.log('Message reçu :', message);
+          this.messageService.loadMessages(this.contactConversation!.contactEmail);
+        }, error => {
+          console.error('Load Message fail:', error);
         });
       }
     });
@@ -44,18 +43,10 @@ export class RightMessageComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.contactSubscription?.unsubscribe();
-    this.messageUpdateSubscription?.unsubscribe();
+    this.messageWebSocketSubscription?.unsubscribe();
   }
 
-  private loadMessages(): void {
-    this.apiMessageRequest.getAllMessageByConversation(this.contactConversation!.contactEmail).subscribe(response => {
-      this.messages = response.messages.map(message => ({
-        ...message,
-        type: message.author === this.contactConversation!.contactEmail ? 'received' : 'sent'
-      }));
-      this.messages.sort((a, b) => new Date(a.date).getTime() - new Date(b.date).getTime());
-    }, error => {
-      console.error('Load Message fail:', error);
-    });
-  }
+
+
+
 }

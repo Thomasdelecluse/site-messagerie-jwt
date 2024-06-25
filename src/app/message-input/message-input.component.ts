@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { ApiMessageRequest } from '../dao/api-request-message';
-import { ContactService } from '../service/contact.service';
-import {MessageUpdateService} from "../service/message-update.service";
+import {Component, OnInit} from '@angular/core';
+import {ContactService} from '../service/contact.service';
+import CreateMessageDto from "../dto/request/create-message-dto";
+import {ApiMessageRequest} from "../dao/api-request-message";
+import {MessageService} from "../service/message.service";
 
 
 @Component({
@@ -10,10 +11,10 @@ import {MessageUpdateService} from "../service/message-update.service";
   styleUrls: ['./message-input.component.css']
 })
 export class MessageInputComponent implements OnInit {
-  messageSent = { destination: '', message: '' };
+  messageToSent : CreateMessageDto | null = null;
   message: string = '';
 
-  constructor(private apiRequestMessage: ApiMessageRequest, private contactService: ContactService, private messageUpdateService: MessageUpdateService) {}
+  constructor(private apiMessageRequest:ApiMessageRequest , private contactService: ContactService, private messageService: MessageService) {}
 
   ngOnInit(): void {
 
@@ -25,13 +26,13 @@ export class MessageInputComponent implements OnInit {
       console.error('Aucun email de contact sélectionné.');
       return;
     }
-    this.messageSent = {
-      destination: contactEmail,
-      message: this.message
+    this.messageToSent = {
+      contactEmail: contactEmail,
+      message: this.message,
     };
-    this.apiRequestMessage.postCreateMessage(this.messageSent).subscribe({
+    this.apiMessageRequest.postCreateMessage(this.messageToSent).subscribe({
       next: () => {
-        this.messageUpdateService.announceMessageUpdated();
+        this.messageService.loadMessages(this.contactService.getContactSelected()?.contactEmail)
         this.resetMessageFields();
       },
       error: (err) => {
@@ -43,6 +44,6 @@ export class MessageInputComponent implements OnInit {
 
   private resetMessageFields(): void {
     this.message = '';
-    this.messageSent = { destination: '', message: '' };
+    this.messageToSent = { contactEmail: '', message: ''};
   }
 }

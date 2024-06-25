@@ -1,17 +1,8 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
-interface MessagesResponse {
-  messages:[Message]
-}
-
-interface Message {
-  id:number,
-  author:string,
-  destination:string,
-  date:string,
-  message:string
-}
+import MessageResponseDto from "../dto/response/message-response-dto";
+import {LocalUserService} from "../service/local-user.service";
 
 
 @Injectable({
@@ -20,25 +11,25 @@ interface Message {
 export class ApiMessageRequest {
   private apiUrl = 'http://localhost:8080/api/message';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,private userService: LocalUserService) { }
 
-
-  getAllMessageByConversation(contactEmail: string): Observable<MessagesResponse> {
-    const url = `${this.apiUrl}?email=${encodeURIComponent(contactEmail)}`;
-    const token = sessionStorage.getItem('token');
+  postCreateMessage(message: { contactEmail: string, message: string }): Observable<void> {
+    console.log("post")
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
-    }
-    return this.http.get<MessagesResponse>(url, { headers });
-  }
-
-  postCreateMessage(message: { destination: string, message: string }): Observable<void> {
-    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    const token = sessionStorage.getItem('token');
+    const token = this.userService.getLocalToken();
     if (token) {
       headers = headers.set('Authorization', `Bearer ${token}`);
     }
     return this.http.post<void>(this.apiUrl, message, { headers });
+  }
+
+  getAllMessageByConversation(contactEmail: string): Observable<MessageResponseDto> {
+    const url = `${this.apiUrl}?email=${encodeURIComponent(contactEmail)}`;
+    const token = this.userService.getLocalToken();
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    return this.http.get<MessageResponseDto>(url, { headers });
   }
 }

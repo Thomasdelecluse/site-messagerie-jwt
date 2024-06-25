@@ -11,7 +11,7 @@ export class LeftContactComponent implements OnInit {
   constructor(public contactService: ContactService) { }
 
   ngOnInit(): void {
-    this.contactService.getContactOfUserConnected();
+    this.contactService.getAllContactOfUserConnected();
     //TO DO
     setTimeout(() => {
       this.contactService.setContactSelectedId(0);
