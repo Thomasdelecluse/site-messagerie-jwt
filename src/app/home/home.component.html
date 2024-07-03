@@ -1,4 +1,6 @@
 <div class="containerMain">
-<app-left-contact></app-left-contact>
-  <app-right-message></app-right-message>
+  <app-navigation (navChange)="setNavPage($event)"></app-navigation>
+  <app-right-message *ngIf="navPage === 'message'"></app-right-message>
+  <app-right-contact *ngIf="navPage === 'contact'"></app-right-contact>
+<!--  <app-right-profile *ngIf="navPage == 'message'"></app-right-profile>-->
 </div>

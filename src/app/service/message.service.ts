@@ -1,23 +1,14 @@
-import { Injectable } from '@angular/core';
-import { ApiMessageRequest } from '../dao/api-request-message';
+import {Injectable} from '@angular/core';
+import {ApiMessageRequest} from '../dao/api-request-message';
 import MessageWithType from '../dto/component/message-with-type';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
-
-interface Message {
-  id: number;
-  author: string;
-  destination: string;
-  date: string;
-  message: string;
-}
+import {BehaviorSubject} from 'rxjs';
+import {catchError, map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessageService {
-  private messagesSubject: BehaviorSubject<MessageWithType[]> = new BehaviorSubject<MessageWithType[]>([]);
-  public messages: Observable<MessageWithType[]> = this.messagesSubject.asObservable();
+  public messagesSubject: BehaviorSubject<MessageWithType[]> = new BehaviorSubject<MessageWithType[]>([]);
 
   constructor(
     private apiMessageRequest: ApiMessageRequest

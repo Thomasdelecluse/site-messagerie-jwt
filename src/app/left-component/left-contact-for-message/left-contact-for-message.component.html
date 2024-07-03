@@ -1,7 +1,4 @@
 <div class="leftContainer">
-  <div class="head">
-    <img src="./assets/img/logo.png" alt="Logo" class="logo">
-  </div>
   <div class="contactContainer">
     <app-contact *ngFor="let contact of contactService.ContactList; let i = index"
                  [name]="contact.contactName"
@@ -9,5 +6,8 @@
                  [isClicked]="contact.isClicked"
                  (click)="onContactClick(i)">
     </app-contact>
+  </div>
+  <div class="bottomContainer">
+    <button class="buttonLogout" (click)="onDisconectClick()">Se déconnecter</button>
   </div>
 </div>

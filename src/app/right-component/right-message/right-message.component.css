@@ -45,6 +45,7 @@
   background: #f1f1f1;
   text-align: right;
   align-self: flex-end;
+  word-wrap: break-word;
 }
 .message-send:after {
   content: '';
@@ -62,7 +63,7 @@
 }
 .message-receive{
   position: relative;
-  background: #007AFF;
+  background: #429cff;
   border-radius: 30px;
   padding: 0px 20px;
   color: white;
@@ -80,9 +81,12 @@
   width: 0;
   height: 0;
   border: 10px solid transparent;
-  border-top-color: #007AFF;
+  border-top-color: #429cff;
   border-bottom: 0;
   border-left: 0;
   margin-left: -5px;
   margin-bottom: -10px;
+}
+h2{
+  color: black;
 }

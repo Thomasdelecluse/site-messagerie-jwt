@@ -8,13 +8,12 @@ import {Subject} from "rxjs";
 export class WebsocketService {
   private stompClient: CompatClient | undefined;
   private username: string | undefined;
-  messageSubject = new Subject<any>();
+  messageWSSubject = new Subject<string>();
 
   connect(token: string) {
     if (this.isConnected()) {
       this.disconnect();
     }
-
     // Configuration des options de connexion
     const connectHeaders = {
       'Authorization': 'Bearer ' + token
@@ -50,7 +49,7 @@ export class WebsocketService {
     if (this.stompClient) {
       this.stompClient.subscribe('/topic/user/' + this.username, (message) => {
         console.log('Received personal message:', message.body);
-        this.messageSubject.next(message.body);
+        this.messageWSSubject.next(message.body);
       }, {
         'Authorization': 'Bearer ' + token
       });

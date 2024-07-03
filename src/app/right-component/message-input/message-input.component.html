@@ -1,0 +1,7 @@
+<div class="input-container">
+  <img src="../../../assets/img/smile.png" alt="icon" class="logo" />
+  <input type="text" placeholder="Écrivez votre message..." [(ngModel)]="message" (keydown.enter)="sendMessage()" />
+  <button class="image-button" (click)="sendMessage()">
+    <img src="../../../assets/img/send.png" alt="Send" class="button-image">
+  </button>
+</div>

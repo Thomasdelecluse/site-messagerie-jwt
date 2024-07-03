@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LeftContactComponent } from './left-contact.component';
+import { LeftContactForMessageComponent } from './left-contact-for-message.component';
 
 describe('LeftContactComponent', () => {
-  let component: LeftContactComponent;
-  let fixture: ComponentFixture<LeftContactComponent>;
+  let component: LeftContactForMessageComponent;
+  let fixture: ComponentFixture<LeftContactForMessageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ LeftContactComponent ]
+      declarations: [ LeftContactForMessageComponent ]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(LeftContactComponent);
+    fixture = TestBed.createComponent(LeftContactForMessageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

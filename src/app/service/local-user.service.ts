@@ -9,4 +9,7 @@ export class LocalUserService {
     return sessionStorage.getItem('token')
   }
 
+  removeToken(){
+    sessionStorage.removeItem('token')
+  }
 }

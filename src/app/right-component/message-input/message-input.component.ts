@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {ContactService} from '../service/contact.service';
-import CreateMessageDto from "../dto/request/create-message-dto";
-import {ApiMessageRequest} from "../dao/api-request-message";
-import {MessageService} from "../service/message.service";
+import {ContactService} from '../../service/contact.service';
+import CreateMessageDto from "../../dto/request/create-message-dto";
+import {ApiMessageRequest} from "../../dao/api-request-message";
+import {MessageService} from "../../service/message.service";
 
 
 @Component({

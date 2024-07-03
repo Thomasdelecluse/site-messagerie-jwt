@@ -4,10 +4,17 @@
   height: 100vh;
 }
 
-app-left-contact {
+app-navigation {
   flex: 0 0 20%;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 6px 0 7px -4px rgb(181 181 181 / 70%);
 }
 
 app-right-message {
+  flex: 1;
+}
+
+app-right-contact {
   flex: 1;
 }

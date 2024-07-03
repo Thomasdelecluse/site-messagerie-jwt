@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+  navPage: string = 'message';
+
 
   constructor() { }
 
   ngOnInit(): void {
   }
-
+  setNavPage(page: string) {
+    this.navPage = page;
+  }
 }
