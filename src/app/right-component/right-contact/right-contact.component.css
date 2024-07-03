@@ -16,3 +16,123 @@
   color: black;
   flex-direction: row;
 }
+.contactContainer{
+  display: flex;
+  flex-grow:1;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+.buttonContainer{
+  display: flex;
+  flex-direction: row;
+}
+.logo{
+  padding-bottom: 20px;
+  width: 150px;
+  height: 150px;
+}
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top:20px;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+.buttonDelete {
+  background-color: #ff4d4d;
+  border: none;
+  color: white;
+  min-width: 86px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.buttonDelete:hover {
+  background-color: #e60000;
+}
+
+.buttonEdit {
+  background-color: #0dc716;
+  border: none;
+  color: white;
+  min-width: 86px;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.buttonEdit:hover {
+  background-color: #28a911;
+}
+.input-not-allowed {
+  background-color: #f5f5f5;
+  color: #8d8d8d;
+  cursor: not-allowed;
+}
+.stylish-input {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom:20px;
+  padding: 10px 15px;
+  border: 2px solid #66b3ff; /* Couleur bleue claire */
+  border-radius: 10px; /* Bordures arrondies */
+  font-size: 16px;
+  background-color: #f0faff; /* Couleur de fond très claire */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+  transition: all 0.3s ease-in-out;
+}
+
+.stylish-input:focus {
+  border-color: #3399ff; /* Couleur bleue plus foncée au focus */
+  box-shadow: 0 0 10px rgba(51, 153, 255, 0.5); /* Effet lumineux au focus */
+  outline: none; /* Enlève le contour par défaut */
+}
+
+.stylish-input::placeholder {
+  color: #99c2ff; /* Couleur des placeholders */
+  opacity: 1;
+}
+
+.file-input {
+  display: none;
+}
+
+.file-label {
+  display: inline-block;
+  padding: 10px 20px;
+  border-radius: 5px;
+  background-color: #36c4e8;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-size: 16px;
+  text-align: center;
+  text-decoration: none;
+}
+
+.file-label:hover {
+  background-color: #40b9d3;
+}
+
+.file-label:active {
+  background-color: #40b9d3;
+  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
