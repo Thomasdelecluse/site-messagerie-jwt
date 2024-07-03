@@ -1,0 +1,32 @@
+.head {
+  background-color: #83f1ff;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo {
+  height: 70px;
+}
+.navBar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 8px;
+}
+.navButton{
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+.button-image{
+  height: 30px;
+  width: 30px;
+}
+app-left-contact-for-message{
+  display: flex;
+  flex-grow: 1;
+}
