@@ -29,10 +29,22 @@
   display: flex;
   flex-direction: row;
 }
-.logo{
-  padding-bottom: 20px;
+.image-container {
   width: 150px;
   height: 150px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f3f3f3;
+  margin-bottom: 20px;
+}
+
+.image-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 .input-wrapper {
   display: flex;
@@ -116,7 +128,8 @@
 }
 
 .file-label {
-  display: inline-block;
+  display: flex;
+  text-align: center;
   padding: 10px 20px;
   border-radius: 5px;
   background-color: #36c4e8;
@@ -124,7 +137,6 @@
   cursor: pointer;
   transition: background-color 0.3s ease;
   font-size: 16px;
-  text-align: center;
   text-decoration: none;
 }
 

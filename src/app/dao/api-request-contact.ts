@@ -2,12 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {LocalUserService} from "../service/local-user.service";
-interface ContactResponse {
-  id:number,
-  contactEmail:string,
-  telephone:string,
-  contactName:string,
-}
+import ContactResponse from "../dto/response/contact-response-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +23,15 @@ export class ApiContactRequest {
       headers = headers.set('Authorization', `Bearer ${token}`);
     }
     return this.http.get<ContactResponse[]>(url, { headers });
+  }
+
+  updateContact(contact: ContactResponse): Observable<Boolean> {
+    const token = this.userService.getLocalToken();
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    return this.http.put<Boolean>(this.apiUrl, contact, { headers });
   }
 }
 

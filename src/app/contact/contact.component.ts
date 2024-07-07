@@ -9,6 +9,8 @@ export class ContactComponent implements OnInit {
   @Input() name!: string;
   @Input() telephone!: string;
   @Input() isClicked!: boolean;
+  @Input() image!: string;
+
   constructor(
   ) { }
 

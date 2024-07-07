@@ -21,7 +21,7 @@ export class LeftContactForMessageComponent implements OnInit {
   }
 
   onContactClick(index: number) {
-    this.contactService.ContactList.forEach((contact, idx) => {
+    this.contactService.contactList.forEach((contact, idx) => {
       contact.isClicked = idx === index;
     });
     this.contactService.setContactSelectedId(index);

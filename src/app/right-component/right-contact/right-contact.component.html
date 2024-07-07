@@ -1,22 +1,29 @@
 <div class="rightContainer">
   <div class="head">
     <div class="headContent">
-        <h2>Contact</h2>
+      <h2>Contact</h2>
     </div>
   </div>
   <div class="contactContainer">
-    <img src="assets/img/user.png" class="logo">
-      <input type="file" id="fileInput" class="file-input">
+    <div class="image-container">
+      <img [src]="'data:image/png;base64,'+ contactConversation.image">
+    </div>
+    <form (ngSubmit)="onSubmit()">
+      <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" class="file-input">
       <label for="fileInput" class="file-label">Choisir un fichier</label>
-    <div class="input-wrapper">
-      <input type="text" placeholder="Nom" [(ngModel)]="contactConversation.contactName" class="stylish-input">
-      <input type="text" placeholder="Prénom" [(ngModel)]="contactConversation.contactName" class="stylish-input">
-      <input type="text" placeholder="Numéro de téléphone" [(ngModel)]="contactConversation.telephone" class="stylish-input">
-      <input placeholder="Email" [(ngModel)]="contactConversation.contactEmail" class="stylish-input input-not-allowed" [disabled]="true">
-    </div>
-    <div class="buttonContainer">
-      <button class="buttonDelete">Delete</button>
-      <button class="buttonEdit">Save</button>
-    </div>
+      <div class="input-wrapper">
+        <input type="text" placeholder="Nom" [(ngModel)]="contactConversation.contactName" name="contactName"
+               class="stylish-input">
+        <input type="text" placeholder="Numéro de téléphone" [(ngModel)]="contactConversation.telephone"
+               name="telephone"
+               class="stylish-input">
+        <input placeholder="Email" [(ngModel)]="contactConversation.contactEmail" name="contactEmail"
+               class="stylish-input input-not-allowed" [disabled]="true">
+      </div>
+      <div class="buttonContainer">
+        <button class="buttonDelete">Delete</button>
+        <button class="buttonEdit" type="submit">Save</button>
+      </div>
+    </form>
   </div>
 </div>

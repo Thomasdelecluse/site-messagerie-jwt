@@ -1,9 +1,10 @@
 <div class="leftContainer">
   <div class="contactContainer">
-    <app-contact *ngFor="let contact of contactService.ContactList; let i = index"
+    <app-contact *ngFor="let contact of contactService.contactList; let i = index"
                  [name]="contact.contactName"
                  [telephone]="contact.telephone"
                  [isClicked]="contact.isClicked"
+                 [image]="contact.image"
                  (click)="onContactClick(i)">
     </app-contact>
   </div>

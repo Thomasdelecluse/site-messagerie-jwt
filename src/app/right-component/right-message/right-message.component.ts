@@ -4,6 +4,7 @@ import {Subscription} from "rxjs";
 import {WebsocketService} from "../../service/websocket.service";
 import MessageWithType from "../../dto/component/message-with-type";
 import {MessageService} from "../../service/message.service";
+import ContactWithIsClicked from "../../dto/component/contact-with-is-clicked";
 
 
 @Component({
@@ -15,7 +16,7 @@ export class RightMessageComponent implements OnInit, OnDestroy {
   private contactSubscription: Subscription | null = null;
   private messageWebSocketSubscription: Subscription | null = null;
   public messages: MessageWithType[] = [];
-  public contactConversation: { id: number, contactEmail: string, telephone: string, contactName: string, isClicked: boolean } | null = null;
+  public contactConversation: ContactWithIsClicked | null = null;
 
   constructor(
     public contactService: ContactService,

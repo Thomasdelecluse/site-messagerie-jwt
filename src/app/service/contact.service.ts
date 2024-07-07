@@ -1,21 +1,9 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject, Observable} from 'rxjs';
+import {BehaviorSubject} from 'rxjs';
 import {ApiContactRequest} from '../dao/api-request-contact';
+import ContactWithIsClicked from "../dto/component/contact-with-is-clicked";
+import ContactResponse from "../dto/response/contact-response-dto";
 
-interface Contact {
-  id: number,
-  contactEmail: string,
-  telephone: string,
-  contactName: string,
-}
-
-interface ContactList {
-  id: number,
-  contactEmail: string,
-  telephone: string,
-  contactName: string,
-  isClicked: boolean,
-}
 
 @Injectable({
   providedIn: 'root'
@@ -24,7 +12,7 @@ export class ContactService {
 
   public contactSelectedIdSubject: BehaviorSubject<number> = new BehaviorSubject<number>(0);
 
-  ContactList: ContactList[] = [];
+  contactList: ContactWithIsClicked[] = [];
 
   constructor(private apiContactRequest: ApiContactRequest) {
   }
@@ -34,11 +22,11 @@ export class ContactService {
 
   getAllContactOfUserConnected() {
     this.apiContactRequest.getAllContactsOfUserConnected().subscribe({
-        next: (contacts: Contact[]) => {
-          this.ContactList = contacts.map(contact => ({...contact, isClicked: false}));
+        next: (contacts: ContactResponse[]) => {
+          this.contactList = contacts.map(contact => ({...contact, isClicked: false}));
 
-          if (this.ContactList.length > 0) {
-            this.ContactList[0].isClicked = true;
+          if (this.contactList.length > 0) {
+            this.contactList[0].isClicked = true;
           }
         },
         error: (error) => {
@@ -53,7 +41,7 @@ export class ContactService {
     this.contactSelectedIdSubject.next(value);
   }
 
-  getContactSelected(): ContactList {
-    return this.ContactList[this.contactSelectedIdSubject.value];
+  getContactSelected(): ContactWithIsClicked {
+    return this.contactList[this.contactSelectedIdSubject.value];
   }
 }
