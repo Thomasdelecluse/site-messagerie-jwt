@@ -6,22 +6,24 @@
   </div>
   <div class="contactContainer">
     <div class="image-container">
-      <img [src]="'data:image/png;base64,'+ contactConversation.image">
+      <img [src]="'data:image/png;base64,'+ contactSelected.image">
     </div>
     <form (ngSubmit)="onSubmit()">
-      <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" class="file-input">
-      <label for="fileInput" class="file-label">Choisir un fichier</label>
+      <div class="file-input-container">
+        <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" class="file-input">
+        <label for="fileInput" class="file-label">Choisir un fichier</label>
+      </div>
       <div class="input-wrapper">
-        <input type="text" placeholder="Nom" [(ngModel)]="contactConversation.contactName" name="contactName"
+        <input type="text" placeholder="Nom" [(ngModel)]="contactSelected.contactName" name="contactName"
                class="stylish-input">
-        <input type="text" placeholder="Numéro de téléphone" [(ngModel)]="contactConversation.telephone"
+        <input type="text" placeholder="Numéro de téléphone" [(ngModel)]="contactSelected.telephone"
                name="telephone"
                class="stylish-input">
-        <input placeholder="Email" [(ngModel)]="contactConversation.contactEmail" name="contactEmail"
+        <input placeholder="Email" [(ngModel)]="contactSelected.contactEmail" name="contactEmail"
                class="stylish-input input-not-allowed" [disabled]="true">
       </div>
       <div class="buttonContainer">
-        <button class="buttonDelete">Delete</button>
+        <button class="buttonDelete" (click)="deleteContact()">Delete</button>
         <button class="buttonEdit" type="submit">Save</button>
       </div>
     </form>

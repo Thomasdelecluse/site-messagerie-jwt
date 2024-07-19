@@ -8,6 +8,8 @@
 .contactContainer {
   padding: 10px;
   flex-grow: 1; /* Prend tout l'espace vertical disponible */
+  overflow-y: auto;
+  height: 20vh;
 }
 
 .buttonLogout {

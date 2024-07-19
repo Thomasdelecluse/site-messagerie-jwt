@@ -32,7 +32,10 @@ export class MessageInputComponent implements OnInit {
     };
     this.apiMessageRequest.postCreateMessage(this.messageToSent).subscribe({
       next: () => {
-        this.messageService.loadMessages(this.contactService.getContactSelected()?.contactEmail)
+        const contactEmail = this.contactService.getContactSelected()?.contactEmail;
+        if (contactEmail) {
+          this.messageService.loadMessages(contactEmail);
+        }
         this.resetMessageFields();
       },
       error: (err) => {

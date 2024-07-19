@@ -10,7 +10,7 @@ import ContactWithIsClicked from "../../dto/component/contact-with-is-clicked";
   styleUrls: ['./right-contact.component.css']
 })
 export class RightContactComponent implements OnInit, OnDestroy {
-  public contactConversation: ContactWithIsClicked = {
+  public contactSelected: ContactWithIsClicked = {
     id: 0,
     contactEmail: '',
     telephone: '',
@@ -43,48 +43,57 @@ export class RightContactComponent implements OnInit, OnDestroy {
   }
 
   onSubmit(): void {
-    const contactToSave: any = {
-      id: this.contactConversation.id,
-      contactEmail: this.contactConversation.contactEmail,
-      telephone: this.contactConversation.telephone,
-      contactName: this.contactConversation.contactName,
-    };
-
-    if (this.selectedFile) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const base64String = (reader.result as string).split(',')[1];
-        contactToSave.image = base64String;
-
-        this.updateContact(contactToSave);
+    if (!this.contactSelected) return;
+      const contactToSave: any = {
+        id: this.contactSelected.id,
+        contactEmail: this.contactSelected.contactEmail,
+        telephone: this.contactSelected.telephone,
+        contactName: this.contactSelected.contactName,
       };
-      reader.readAsDataURL(this.selectedFile);
-    } else if (this.contactConversation.image) {
-      contactToSave.image = this.contactConversation.image;
-      this.updateContact(contactToSave);
 
-    } else {
-      this.updateContact(contactToSave);
+      if (this.selectedFile) {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const base64String = (reader.result as string).split(',')[1];
+          contactToSave.image = base64String;
+
+          this.updateContact(contactToSave);
+        };
+        reader.readAsDataURL(this.selectedFile);
+      } else if (this.contactSelected.image) {
+        contactToSave.image = this.contactSelected.image;
+        this.updateContact(contactToSave);
+
+      } else {
+        this.updateContact(contactToSave);
+      }
+    }
+
+  deleteContact():void{
+    if (this.contactSelected) {
+      this.contactService.deleteContactById(this.contactSelected.id);
     }
   }
 
   private updateContact(contact: any): void {
     this.apiService.updateContact(contact)
-      .subscribe(updatedContact => {
-        this.contactService.getAllContactOfUserConnected();
-        setTimeout(() => {
-          this.LoadContact();
-        }, 100);
-      }, error => {
-        console.error('Error updating contact:', error);
+      .subscribe({
+        next: () => {
+          this.contactService.getAllContactOfUserConnected();
+          setTimeout(() => {
+            this.LoadContact();
+          }, 100);
+        },
+        error: (error) => {
+      console.error('Error updating contact:', error);
+    }
       });
   }
   private LoadContact(): void{
     this.contactSubscription = this.contactService.contactSelectedIdSubject.subscribe(() => {
       const selectedContact = this.contactService.getContactSelected();
-      console.log(selectedContact);
       if (selectedContact) {
-        this.contactConversation = {
+        this.contactSelected = {
           id: selectedContact.id,
           contactEmail: selectedContact.contactEmail,
           telephone: selectedContact.telephone,
@@ -93,6 +102,17 @@ export class RightContactComponent implements OnInit, OnDestroy {
           isClicked: selectedContact.isClicked,
         };
       }
+      else this.resetUserSelected();
+
     });
+  }
+
+  resetUserSelected() : void{
+  this.contactSelected.id = 0;
+  this.contactSelected.contactEmail = '';
+  this.contactSelected.telephone = '';
+  this.contactSelected.contactName = '';
+  this.contactSelected.image = '';
+  this.contactSelected.isClicked = false;
   }
 }

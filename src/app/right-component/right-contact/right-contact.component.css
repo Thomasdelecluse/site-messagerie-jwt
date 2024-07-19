@@ -24,6 +24,7 @@
   flex-direction: column;
   padding-top: 20px;
   padding-bottom: 20px;
+  text-align: center;
 }
 .buttonContainer{
   display: flex;
@@ -104,27 +105,31 @@
   max-width: 400px;
   margin-bottom:20px;
   padding: 10px 15px;
-  border: 2px solid #66b3ff; /* Couleur bleue claire */
-  border-radius: 10px; /* Bordures arrondies */
+  border: 2px solid #66b3ff;
+  border-radius: 10px;
   font-size: 16px;
-  background-color: #f0faff; /* Couleur de fond très claire */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Ombre douce */
+  background-color: #f0faff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease-in-out;
 }
 
 .stylish-input:focus {
-  border-color: #3399ff; /* Couleur bleue plus foncée au focus */
-  box-shadow: 0 0 10px rgba(51, 153, 255, 0.5); /* Effet lumineux au focus */
-  outline: none; /* Enlève le contour par défaut */
+  border-color: #3399ff;
+  box-shadow: 0 0 10px rgba(51, 153, 255, 0.5);
+  outline: none;
 }
 
 .stylish-input::placeholder {
-  color: #99c2ff; /* Couleur des placeholders */
+  color: #99c2ff;
   opacity: 1;
 }
 
 .file-input {
-  display: none;
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  overflow: hidden;
 }
 
 .file-label {
@@ -147,4 +152,7 @@
 .file-label:active {
   background-color: #40b9d3;
   box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+.file-input-container {
+  display: inline-block;
 }

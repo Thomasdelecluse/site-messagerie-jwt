@@ -15,9 +15,6 @@ export class LeftContactForMessageComponent implements OnInit {
 
   ngOnInit(): void {
     this.contactService.getAllContactOfUserConnected();
-    setTimeout(() => {
-      this.contactService.setContactSelectedId(0);
-    }, 100);
   }
 
   onContactClick(index: number) {

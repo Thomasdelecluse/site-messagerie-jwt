@@ -25,13 +25,22 @@ export class ApiContactRequest {
     return this.http.get<ContactResponse[]>(url, { headers });
   }
 
-  updateContact(contact: ContactResponse): Observable<Boolean> {
+  updateContact(contact: ContactResponse): Observable<void> {
     const token = this.userService.getLocalToken();
     let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
     if (token) {
       headers = headers.set('Authorization', `Bearer ${token}`);
     }
-    return this.http.put<Boolean>(this.apiUrl, contact, { headers });
+    return this.http.put<void>(this.apiUrl, contact, { headers });
+  }
+
+  deleteContact(contactId: number): Observable<void> {
+    const token = this.userService.getLocalToken();
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    return this.http.delete<void>( this.apiUrl + '/'+ contactId, { headers });
   }
 }
 
