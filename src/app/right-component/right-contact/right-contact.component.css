@@ -5,27 +5,6 @@
   background-color: white;
   margin-left: 1px;
 }
-.head {
-  background: linear-gradient(90deg, rgba(131,241,255,1) 0%, rgba(0,198,255,1) 70%, rgba(49,195,255,1) 100%);
-  min-height: 80px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.headContent{
-  color: black;
-  flex-direction: row;
-}
-.contactContainer{
-  display: flex;
-  flex-grow:1;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  text-align: center;
-}
 .buttonContainer{
   display: flex;
   flex-direction: row;
@@ -41,7 +20,6 @@
   background-color: #f3f3f3;
   margin-bottom: 20px;
 }
-
 .image-container img {
   width: 100%;
   height: 100%;
@@ -102,10 +80,9 @@
 }
 .stylish-input {
   width: 100%;
-  max-width: 400px;
   margin-bottom:20px;
   padding: 10px 15px;
-  border: 2px solid #66b3ff;
+  border: 2px solid #a1efff;
   border-radius: 10px;
   font-size: 16px;
   background-color: #f0faff;
@@ -120,7 +97,7 @@
 }
 
 .stylish-input::placeholder {
-  color: #99c2ff;
+  color: #8f8f8f;
   opacity: 1;
 }
 
@@ -156,3 +133,90 @@
 .file-input-container {
   display: inline-block;
 }
+.buttonAddContact {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  transition: transform 0.3s ease;
+  z-index: 1000;
+}
+
+.buttonAddContact:hover {
+  transform: scale(1.1);
+}
+
+.buttonAddContact img {
+  width: 40px;
+  height: 40px;
+}
+
+.containerCard{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("src/assets/img/bg-contact.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  flex-grow: 1;
+}
+form{
+  text-align: center;
+}
+.card {
+  --background: linear-gradient(to left, #82f0ff 0%, #2ec3ff 100%);
+  padding: 5px;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #2b6cf7;
+  position: relative;
+  z-index: 1;
+  box-shadow: 10px 10px 20px rgba(46, 195, 255, 0.7);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(270deg, #82f0ff, #2ec3ff, #82f0ff);
+  background-size: 400% 400%;
+  z-index: -1;
+  border-radius: 1rem;
+  animation: waveAnimation 5s ease infinite;
+}
+
+@keyframes waveAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.card-info {
+  --color: #f1f8ff;
+  background: var(--color);
+  color: var(--color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 50px;
+  overflow: visible;
+  border-radius: 0.7rem;
+  position: relative;
+  z-index: 1;
+}
+
+
+

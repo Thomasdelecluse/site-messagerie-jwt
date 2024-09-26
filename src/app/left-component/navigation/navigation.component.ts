@@ -1,4 +1,5 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {NavigationService} from "../../service/navigation.service";
 
 @Component({
   selector: 'app-navigation',
@@ -6,14 +7,12 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  @Output() navChange = new EventEmitter<string>();
 
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+  constructor(private navigationService: NavigationService){};
   navigate(page: string) {
-    this.navChange.emit(page);
+    console.log('Navigating to:', page);
+    this.navigationService.navigate(page);
+  }
+  ngOnInit(): void {
   }
 }

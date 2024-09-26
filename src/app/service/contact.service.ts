@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
-import {BehaviorSubject} from 'rxjs';
+import {BehaviorSubject, Observable} from 'rxjs';
 import {ApiContactRequest} from '../dao/api-request-contact';
 import ContactWithIsClicked from "../dto/component/contact-with-is-clicked";
 import ContactResponse from "../dto/response/contact-response-dto";
+import SearchUserResponseDto from "../dto/response/search-user-response-dto";
 
 
 @Injectable({
@@ -67,6 +68,10 @@ export class ContactService {
       return this.contactList[this.contactSelectedIdSubject.value];
     }
     return null
+  }
+
+  searchContacts(query: string) : Observable<SearchUserResponseDto[]>{
+    return this.apiContactRequest.getContactBySearch(query);
   }
 
 }

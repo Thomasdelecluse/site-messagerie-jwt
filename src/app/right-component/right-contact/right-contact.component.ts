@@ -3,6 +3,7 @@ import { Subscription } from 'rxjs';
 import { ContactService } from '../../service/contact.service';
 import { ApiContactRequest } from '../../dao/api-request-contact';
 import ContactWithIsClicked from "../../dto/component/contact-with-is-clicked";
+import {NavigationService} from "../../service/navigation.service";
 
 @Component({
   selector: 'app-right-contact',
@@ -21,12 +22,15 @@ export class RightContactComponent implements OnInit, OnDestroy {
   selectedFile: File | null = null;
   private contactSubscription: Subscription | null = null;
 
-  constructor(private contactService: ContactService, private apiService: ApiContactRequest) { }
+  constructor(private contactService: ContactService, private apiService: ApiContactRequest, private navigationService: NavigationService) { }
 
   ngOnInit(): void {
     this.LoadContact();
   }
-
+  navigate(page: string) {
+    console.log('Navigating to:', page);
+    this.navigationService.navigate(page);
+  }
 
 
   ngOnDestroy(): void {

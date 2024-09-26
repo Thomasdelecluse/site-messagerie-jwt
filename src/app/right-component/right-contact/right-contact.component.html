@@ -1,31 +1,31 @@
 <div class="rightContainer">
-  <div class="head">
-    <div class="headContent">
-      <h2>Contact</h2>
-    </div>
+  <div class="containerCard">
+    <div class="card">
+      <div class="card-info">
+        <div class="image-container">
+          <img [src]="'data:image/png;base64,'+ contactSelected.image">
+        </div>
+        <form (ngSubmit)="onSubmit()">
+          <div class="file-input-container">
+            <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" class="file-input">
+            <label for="fileInput" class="file-label">Choisir un fichier</label>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" placeholder="Nom" [(ngModel)]="contactSelected.contactName" name="contactName"
+                   class="stylish-input">
+            <input type="text" placeholder="Numéro de téléphone" [(ngModel)]="contactSelected.telephone"
+                   name="telephone"
+                   class="stylish-input">
+            <input placeholder="Email" [(ngModel)]="contactSelected.contactEmail" name="contactEmail"
+                   class="stylish-input input-not-allowed" [disabled]="true">
+          </div>
+          <div class="buttonContainer">
+            <button class="buttonDelete" (click)="deleteContact()">Delete</button>
+            <button class="buttonEdit" type="submit">Save</button>
+          </div>
+        </form>
+      </div>
   </div>
-  <div class="contactContainer">
-    <div class="image-container">
-      <img [src]="'data:image/png;base64,'+ contactSelected.image">
-    </div>
-    <form (ngSubmit)="onSubmit()">
-      <div class="file-input-container">
-        <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/*" class="file-input">
-        <label for="fileInput" class="file-label">Choisir un fichier</label>
-      </div>
-      <div class="input-wrapper">
-        <input type="text" placeholder="Nom" [(ngModel)]="contactSelected.contactName" name="contactName"
-               class="stylish-input">
-        <input type="text" placeholder="Numéro de téléphone" [(ngModel)]="contactSelected.telephone"
-               name="telephone"
-               class="stylish-input">
-        <input placeholder="Email" [(ngModel)]="contactSelected.contactEmail" name="contactEmail"
-               class="stylish-input input-not-allowed" [disabled]="true">
-      </div>
-      <div class="buttonContainer">
-        <button class="buttonDelete" (click)="deleteContact()">Delete</button>
-        <button class="buttonEdit" type="submit">Save</button>
-      </div>
-    </form>
   </div>
+  <button class="buttonAddContact"><img src="../../../assets/img/add-user.png" (click)="navigate('add-contact')"></button>
 </div>

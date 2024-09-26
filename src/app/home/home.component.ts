@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {NavigationService} from "../service/navigation.service";
 
 @Component({
   selector: 'app-home',
@@ -6,11 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
+
   navPage: string = 'message';
 
-
-  constructor() { }
-
+  constructor(private navigationService: NavigationService) {
+    this.navigationService.navPage$.subscribe(page => {
+      this.navPage = page;
+    });
+  }
   ngOnInit(): void {
   }
   setNavPage(page: string) {

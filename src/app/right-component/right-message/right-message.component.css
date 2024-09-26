@@ -41,7 +41,7 @@
 }
 
 .writeMessage {
-  height: 80px;
+  min-height: 80px;
   margin-top: auto;
 }
 .message-send {
