@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from "rxjs";
 import {LocalUserService} from "../service/local-user.service";
 import ContactResponse from "../dto/response/contact-response-dto";
+import SearchUserResponseDto from "../dto/response/search-user-response-dto";
 
 @Injectable({
   providedIn: 'root'
@@ -42,5 +43,16 @@ export class ApiContactRequest {
     }
     return this.http.delete<void>( this.apiUrl + '/'+ contactId, { headers });
   }
+
+  getContactBySearch(searchContact: string): Observable<SearchUserResponseDto[]> {
+    const token = this.userService.getLocalToken();
+    let headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+    const url = `${this.apiUrl}/${searchContact}`;
+    return this.http.get<SearchUserResponseDto[]>(url, { headers });
+  }
+
 }
 
