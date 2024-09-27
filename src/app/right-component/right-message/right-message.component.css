@@ -1,12 +1,16 @@
-.rightContainer{
+.containerMain{
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  margin-left: 1px;
   height: 100vh;
   background-color: white;
-  margin-left: 1px;
+}
+.rightContainer{
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
 }
 .head {
-  background: linear-gradient(90deg, rgba(131,241,255,1) 0%, rgba(0,198,255,1) 70%, rgba(49,195,255,1) 100%);
   min-height: 80px;
   display: flex;
   align-items: center;

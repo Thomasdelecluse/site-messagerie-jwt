@@ -5,8 +5,10 @@
 }
 
 app-navigation {
-  flex: 0 0 20%;
+  flex: 0 0 5%;
   display: flex;
+  background: rgb(46,195,255);
+  background: linear-gradient(180deg, rgba(46,195,255,1) 0%, rgba(59,210,255,1) 29%, rgba(131,241,254,1) 63%);
   flex-direction: column;
   box-shadow: 6px 0 7px -4px rgb(181 181 181 / 70%);
 }

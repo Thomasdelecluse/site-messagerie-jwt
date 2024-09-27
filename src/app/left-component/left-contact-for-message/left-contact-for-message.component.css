@@ -1,13 +1,14 @@
 .leftContainer {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
+  height: 100vh;
   background-color: white;
+  box-shadow: 6px 0 7px -4px rgb(181 181 181 / 41%);
 }
 
 .contactContainer {
   padding: 10px;
-  flex-grow: 1; /* Prend tout l'espace vertical disponible */
+  flex-grow: 1;
   overflow-y: auto;
   height: 20vh;
 }

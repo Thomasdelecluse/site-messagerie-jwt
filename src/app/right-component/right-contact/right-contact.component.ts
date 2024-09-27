@@ -27,6 +27,11 @@ export class RightContactComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.LoadContact();
   }
+
+  triggerFileInput() {
+    const fileInput = document.getElementById('fileInput') as HTMLElement;
+    fileInput.click();
+  }
   navigate(page: string) {
     console.log('Navigating to:', page);
     this.navigationService.navigate(page);
@@ -62,6 +67,7 @@ export class RightContactComponent implements OnInit, OnDestroy {
           contactToSave.image = base64String;
 
           this.updateContact(contactToSave);
+          this.selectedFile = null;
         };
         reader.readAsDataURL(this.selectedFile);
       } else if (this.contactSelected.image) {

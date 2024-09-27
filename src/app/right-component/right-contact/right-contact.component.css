@@ -1,13 +1,16 @@
 .rightContainer{
   display: flex;
   flex-direction: column;
-  height: 100vh;
-  background-color: white;
-  margin-left: 1px;
+  height: auto;
+  flex-grow: 1;
+  margin-left: 3px;
 }
-.buttonContainer{
+.containerMain{
   display: flex;
   flex-direction: row;
+  margin-left: 1px;
+  height: 100vh;
+  background-color: white;
 }
 .image-container {
   width: 150px;
@@ -19,6 +22,53 @@
   align-items: center;
   background-color: #f3f3f3;
   margin-bottom: 20px;
+  position: relative;
+  transition: filter 0.3s ease;
+}
+
+.contact-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: filter 0.3s ease;
+}
+
+.edit-image-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+
+.image-container:hover .contact-image {
+  filter: blur(4px);
+}
+
+.image-container:hover .edit-image-button {
+  display: block;
+}
+
+.edit-icon {
+  width: 30px;
+  height: 30px;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.image-container:hover .edit-icon {
+  opacity: 1;
+}
+.file-input {
+  display: none;
+}
+
+.buttonContainer{
+  display: flex;
+  flex-direction: row;
 }
 .image-container img {
   width: 100%;
@@ -101,38 +151,6 @@
   opacity: 1;
 }
 
-.file-input {
-  position: absolute;
-  opacity: 0;
-  width: 0;
-  height: 0;
-  overflow: hidden;
-}
-
-.file-label {
-  display: flex;
-  text-align: center;
-  padding: 10px 20px;
-  border-radius: 5px;
-  background-color: #36c4e8;
-  color: white;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-size: 16px;
-  text-decoration: none;
-}
-
-.file-label:hover {
-  background-color: #40b9d3;
-}
-
-.file-label:active {
-  background-color: #40b9d3;
-  box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.2);
-}
-.file-input-container {
-  display: inline-block;
-}
 .buttonAddContact {
   position: fixed;
   bottom: 20px;

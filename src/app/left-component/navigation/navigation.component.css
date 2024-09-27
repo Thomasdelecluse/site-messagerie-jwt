@@ -1,5 +1,4 @@
 .head {
-  background-color: #83f1ff;
   height: 80px;
   display: flex;
   align-items: center;
@@ -7,26 +6,34 @@
 }
 
 .logo {
-  height: 70px;
+  height: 60px;
 }
-.navBar{
+
+.navBar {
   display: flex;
-  flex-direction: row;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  padding-top: 15px;
-  padding-bottom: 8px;
+  height: 100vh;
+  padding-top: 35px;
+  padding-bottom: 15px;
 }
-.navButton{
+
+.navButton {
   cursor: pointer;
   border: none;
   background: transparent;
 }
-.button-image{
+
+.button-image {
   height: 30px;
   width: 30px;
 }
-app-left-contact-for-message{
-  display: flex;
-  flex-grow: 1;
+
+.navButton:not(:last-child) {
+  margin-bottom: 50px;
+}
+
+.navBar .navButton:last-child {
+  margin-top: auto;
 }
