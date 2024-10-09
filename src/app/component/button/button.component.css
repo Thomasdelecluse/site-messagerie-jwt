@@ -1,0 +1,32 @@
+
+.buttonLogout {
+  background: linear-gradient(90deg, rgba(131,241,255,1) 0%, rgba(0,198,255,1) 70%, rgba(49,195,255,1) 100%);
+  border-radius: 10px;
+  border: none;
+  padding: 15px 30px;
+  font-weight: bold;
+  color: white;
+  font-size: 16px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: background 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+.buttonLogout:hover {
+  background: linear-gradient(135deg, #5DB1FF, #3E8AE3);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  transform: translateY(-3px);
+}
+
+.buttonLogout:active {
+  background: linear-gradient(135deg, #3E8AE3, #1E6BB8);
+  transform: translateY(1px);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+.buttonLogout .icon {
+  margin-right: 10px;
+  vertical-align: middle;
+}
