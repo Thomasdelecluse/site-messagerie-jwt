@@ -1,0 +1,110 @@
+.containerMain {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("src/assets/img/bg-contact.svg");
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.card {
+  --background: linear-gradient(to left, #82f0ff 0%, #2ec3ff 100%);
+  padding: 5px;
+  border-radius: 1rem;
+  overflow: hidden;
+  background: #2b6cf7;
+  position: relative;
+  z-index: 1;
+  box-shadow: 10px 10px 20px rgba(46, 195, 255, 0.7);
+}
+
+.card::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(270deg, #82f0ff, #2ec3ff, #82f0ff);
+  background-size: 400% 400%;
+  z-index: -1;
+  border-radius: 1rem;
+  animation: waveAnimation 5s ease infinite;
+}
+
+.card-info {
+  --color: #f1f8ff;
+  background: var(--color);
+  color: var(--color);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 50px;
+  overflow: visible;
+  border-radius: 0.7rem;
+  position: relative;
+  z-index: 1;
+}
+.input-label {
+  margin-bottom: 10px;
+  font-size: 16px;
+  color: #424242;
+  font-weight: bold;
+}
+.contact-image {
+  width: 140px;
+  height: auto;
+  margin-bottom: 40px;
+}
+.stylish-input {
+  width: 100%;
+  padding: 10px 15px;
+  border: 2px solid #a1efff;
+  color: #424242FF;
+  font-weight: bold;
+  border-radius: 10px;
+  font-size: 16px;
+  background-color: #f0faff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.stylish-input:focus {
+  border-color: #3399ff;
+  box-shadow: 0 0 10px rgba(51, 153, 255, 0.5);
+  outline: none;
+}
+
+.stylish-input::placeholder {
+  color: #8F8F8FFF;
+  opacity: 1;
+}
+app-button{
+  margin-top: 20px;
+}
+.suggestions-list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  max-height: 150px;
+  overflow-y: auto;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: white;
+  z-index: 10;
+}
+
+.suggestion-item {
+  color: #424242;
+  font-weight: bold;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.suggestion-item:hover {
+  background-color: #f0f0f0;
+}

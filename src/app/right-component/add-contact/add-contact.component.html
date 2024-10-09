@@ -1,0 +1,31 @@
+<div class="containerMain">
+  <div class="card">
+    <div class="card-info">
+      <img src="assets/img/add-contact-icon.png" alt="Ajouter un contact" class="contact-image">
+      <p class="input-label">Veuillez entrer l'email du contact :</p>
+      <input
+        placeholder="Email"
+        name="contactEmail"
+        [(ngModel)]="contactEmail"
+        (input)="onInputChange(contactEmail)"
+        class="stylish-input"
+      >
+
+      <ul class="suggestions-list" *ngIf="suggestions.length > 0">
+        <li
+          *ngFor="let suggestion of suggestions"
+          (click)="selectSuggestion(suggestion.email)"
+          class="suggestion-item"
+        >
+          {{ suggestion.email }}
+        </li>
+      </ul>
+
+      <app-button
+        label="Ajouter"
+        buttonClass="buttonLogout"
+        (click)="addContact()"
+      ></app-button>
+    </div>
+  </div>
+</div>
